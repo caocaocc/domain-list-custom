@@ -56,6 +56,10 @@ jobs:
       - name: Append attribute rules
         if: ${{ env.NeedToSync }}
         run: |
+          echo "full:yacd.haishan.me" >> ./domain-list-community/data/private
+          echo "full:yacd.metacubex.one" >> ./domain-list-community/data/private
+          echo "full:d.metacubex.one" >> ./domain-list-community/data/private
+          echo "full:board.zash.run.place" >> ./domain-list-community/data/private
           echo "include:geolocation-!cn @cn" >> ./domain-list-community/data/cn
           echo "include:geolocation-cn @!cn" >> ./domain-list-community/data/geolocation-\!cn
 
