@@ -57,6 +57,9 @@ jobs:
         if: ${{ env.NeedToSync }}
         run: |
           echo "splashtop.com" >> ./domain-list-community/data/category-remote-control
+          echo "nio.com" >> ./domain-list-community/data/cn
+          echo "xiaopeng.com" >> ./domain-list-community/data/cn
+          echo "lixiang.com" >> ./domain-list-community/data/cn
           echo "full:yacd.haishan.me" >> ./domain-list-community/data/private
           echo "full:yacd.metacubex.one" >> ./domain-list-community/data/private
           echo "full:d.metacubex.one" >> ./domain-list-community/data/private
