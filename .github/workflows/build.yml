@@ -56,7 +56,7 @@ jobs:
       - name: Append attribute rules
         if: ${{ env.NeedToSync }}
         run: |
-          echo "splashtop.com" >> ./domain-list-community/data/category-remote-control
+          echo "splashtop.com @cn" >> ./domain-list-community/data/category-remote-control
           echo "nio.com" >> ./domain-list-community/data/cn
           echo "xiaopeng.com" >> ./domain-list-community/data/cn
           echo "lixiang.com" >> ./domain-list-community/data/cn
