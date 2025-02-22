@@ -56,9 +56,6 @@ jobs:
       - name: Append attribute rules
         if: ${{ env.NeedToSync }}
         run: |
-          echo "nio.com" >> ./domain-list-community/data/cn
-          echo "xiaopeng.com" >> ./domain-list-community/data/cn
-          echo "lixiang.com" >> ./domain-list-community/data/cn
           echo "splashtop.com" >> ./domain-list-community/data/private
           echo "full:yacd.haishan.me" >> ./domain-list-community/data/private
           echo "full:yacd.metacubex.one" >> ./domain-list-community/data/private
@@ -66,6 +63,11 @@ jobs:
           echo "full:board.zash.run.place" >> ./domain-list-community/data/private
           echo "include:geolocation-!cn @cn" >> ./domain-list-community/data/cn
           echo "include:geolocation-cn @!cn" >> ./domain-list-community/data/geolocation-\!cn
+          echo "include:tld-!cn" >> ./domain-list-community/data/not-cn
+          echo "include:geolocation-!cn" >> ./domain-list-community/data/not-cn
+          echo "nio.com" >> ./domain-list-community/data/cn
+          echo "xiaopeng.com" >> ./domain-list-community/data/cn
+          echo "lixiang.com" >> ./domain-list-community/data/cn
 
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
