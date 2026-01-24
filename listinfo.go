@@ -334,9 +334,9 @@ func (l *ListInfo) ToGFWList() []byte {
 	gfwlistBytes = append(gfwlistBytes, []byte("[AutoProxy 0.2.9]\n")...)
 	gfwlistBytes = append(gfwlistBytes, []byte(timeString)...)
 	gfwlistBytes = append(gfwlistBytes, []byte("! Expires: 24h\n")...)
-	gfwlistBytes = append(gfwlistBytes, []byte("! HomePage: https://github.com/Loyalsoldier/domain-list-custom\n")...)
-	gfwlistBytes = append(gfwlistBytes, []byte("! GitHub URL: https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/gfwlist.txt\n")...)
-	gfwlistBytes = append(gfwlistBytes, []byte("! jsdelivr URL: https://cdn.jsdelivr.net/gh/Loyalsoldier/domain-list-custom@release/gfwlist.txt\n")...)
+	gfwlistBytes = append(gfwlistBytes, []byte("! HomePage: https://github.com/caocaocc/domain-list-custom\n")...)
+	gfwlistBytes = append(gfwlistBytes, []byte("! GitHub URL: https://raw.githubusercontent.com/caocaocc/domain-list-custom/release/gfwlist.txt\n")...)
+	gfwlistBytes = append(gfwlistBytes, []byte("! jsdelivr URL: https://cdn.jsdelivr.net/gh/caocaocc/domain-list-custom@release/gfwlist.txt\n")...)
 	gfwlistBytes = append(gfwlistBytes, []byte("\n")...)
 
 	for _, rule := range l.GeoSite.Domain {

@@ -40,6 +40,77 @@ jobs:
           repository: v2fly/domain-list-community
           path: domain-list-community
 
+      - name: Add domain list
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import urllib.request
+
+          SOURCES = {
+              "cdn": [
+                  "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/master/sing-box/domainset/cdn.json",
+                  "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/master/sing-box/non_ip/cdn.json",
+              ],
+              "global": [
+                  "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/master/sing-box/non_ip/global.json",
+              ],
+              "domestic": [
+                  "https://raw.githubusercontent.com/SukkaLab/ruleset.skk.moe/master/sing-box/non_ip/domestic.json",
+              ],
+          }
+          DOMAIN_RE = re.compile(r"^[a-z0-9.-]+$")
+
+          def fetch_json(url: str) -> dict:
+              with urllib.request.urlopen(url) as response:
+                  return json.load(response)
+
+          def normalize_domain(value: str, strip_dot: bool):
+              value = value.strip().lower()
+              if strip_dot:
+                  value = value.lstrip(".").rstrip(".")
+              if not value:
+                  return None
+              if not DOMAIN_RE.match(value):
+                  return None
+              return value
+
+          def build_lines(urls):
+              lines = set()
+              for url in urls:
+                  payload = fetch_json(url)
+                  for rule in payload.get("rules", []):
+                      for item in rule.get("domain_suffix", []):
+                          value = normalize_domain(item, strip_dot=True)
+                          if value:
+                              lines.add("domain:" + value)
+                      for item in rule.get("domain", []):
+                          value = normalize_domain(item, strip_dot=True)
+                          if value:
+                              lines.add("full:" + value)
+                      for item in rule.get("domain_keyword", []):
+                          value = normalize_domain(item, strip_dot=False)
+                          if value:
+                              lines.add("keyword:" + value)
+                      for item in rule.get("domain_regex", []):
+                          value = str(item).strip()
+                          if value:
+                              lines.add("regexp:" + value)
+              return lines
+
+          for name, urls in SOURCES.items():
+              lines = build_lines(urls)
+              header = ["# Generated from:"]
+              header.extend("# - " + url for url in urls)
+              header.append("")
+              output_path = f"./domain-list-community/data/{name}"
+              os.makedirs(os.path.dirname(output_path), exist_ok=True)
+              with open(output_path, "w", encoding="utf-8") as f:
+                  f.write("\n".join(header + sorted(lines)))
+                  f.write("\n")
+          PY
+
       - name: Append attribute rules
         if: ${{ env.NeedToSync }}
         run: |

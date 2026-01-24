@@ -11,7 +11,7 @@
 
 ## 下载地址
 
-[https://github.com/Loyalsoldier/domain-list-custom/releases/latest/download/geosite.dat](https://github.com/Loyalsoldier/domain-list-custom/releases/latest/download/geosite.dat)
+[https://github.com/caocaocc/domain-list-custom/releases/latest/download/geosite.dat](https://github.com/caocaocc/domain-list-custom/releases/latest/download/geosite.dat)
 
 ## 使用本项目的项目
 
