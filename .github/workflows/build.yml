@@ -116,6 +116,7 @@ jobs:
         run: |
           echo "include:geolocation-!cn @cn" >> ./domain-list-community/data/cn
           echo "include:geolocation-cn @!cn" >> ./domain-list-community/data/geolocation-\!cn
+          echo "missav.live" >> ./domain-list-community/data/missav
 
       - name: Get dependencies and run
         if: ${{ env.NeedToSync }}
